@@ -1,0 +1,922 @@
+[
+[
+"AA",
+"Minutes",
+"Other Case Types"
+],
+[
+"AC",
+"Administrative Codes",
+"Other Case Types"
+],
+[
+"AE",
+"Electric",
+"Affiliated Interest"
+],
+[
+"AF",
+"Accounting Files",
+"Other Case Types"
+],
+[
+"AFR",
+"Application Filing Requirements",
+"Other Case Types"
+],
+[
+"AG",
+"Gas",
+"Affiliated Interest"
+],
+[
+"AH",
+"Heat",
+"Affiliated Interest"
+],
+[
+"AI",
+"Affiliated Interest",
+"Affiliated Interest"
+],
+[
+"AR",
+"Annual Reports (late penalty) (BFS)",
+"Other Case Types"
+],
+[
+"AS",
+"Sewer",
+"Affiliated Interest"
+],
+[
+"AT",
+"Telephone",
+"Affiliated Interest"
+],
+[
+"AU",
+"Combined Utility",
+"Affiliated Interest"
+],
+[
+"AW",
+"Water",
+"Affiliated Interest"
+],
+[
+"AZ",
+"Annual Report (late) (BFS)",
+"Other Case Types"
+],
+[
+"BA",
+"Billing Audit",
+"Inquiry / Investigation"
+],
+[
+"BC",
+"Broadband Certifications",
+"Other Case Types"
+],
+[
+"BCH",
+"BEAD Challenge",
+"Federal Fund Grant"
+],
+[
+"BCT",
+"Telecommuter Forward! Community Certification",
+"Other Case Types"
+],
+[
+"BD",
+"BEAD Grants",
+"Federal Fund Grant"
+],
+[
+"BE",
+"Electric",
+"Restructure"
+],
+[
+"BF",
+"Broadband Funding",
+"Programs"
+],
+[
+"BG",
+"Gas",
+"Restructure"
+],
+[
+"BP",
+"Broadband Planning",
+"Programs"
+],
+[
+"BR",
+"Broadband Review",
+"Programs"
+],
+[
+"BS",
+"Buy / Sell",
+"Buy / Sell"
+],
+[
+"BT",
+"Telephone",
+"Restructure"
+],
+[
+"BU",
+"Combined Utility",
+"Restructure"
+],
+[
+"BW",
+"Water",
+"Restructure"
+],
+[
+"CAF",
+"Consumer Advocate Funding",
+"Other Case Types"
+],
+[
+"CC",
+"Consumer Complaint - Formal",
+"Other Case Types"
+],
+[
+"CE",
+"Electric",
+"Construction"
+],
+[
+"CG",
+"Gas",
+"Construction"
+],
+[
+"CH",
+"Heat",
+"Construction"
+],
+[
+"CI",
+"Committee Involvement",
+"Other Case Types"
+],
+[
+"CPF",
+"Capital Projects Fund Infrastructure Grant",
+"Federal Fund Grant"
+],
+[
+"CS",
+"Sewer",
+"Construction"
+],
+[
+"CT",
+"Telephone",
+"Construction"
+],
+[
+"CU",
+"Combined Utility",
+"Construction"
+],
+[
+"CW",
+"Water",
+"Construction"
+],
+[
+"DA",
+"Direct Assessments",
+"Other Case Types"
+],
+[
+"DE",
+"Electric",
+"Depreciation"
+],
+[
+"DEC",
+"Digital Equity Capacity Grants",
+"Federal Fund Grant"
+],
+[
+"DG",
+"Gas",
+"Depreciation"
+],
+[
+"DH",
+"Heat",
+"Depreciation"
+],
+[
+"DR",
+"Declaratory Ruling",
+"Other Case Types"
+],
+[
+"DS",
+"Sewer",
+"Depreciation"
+],
+[
+"DT",
+"Telephone",
+"Depreciation"
+],
+[
+"DU",
+"Combined Utility",
+"Depreciation"
+],
+[
+"DW",
+"Water",
+"Depreciation"
+],
+[
+"EA",
+"Electric",
+"Abandonment (Sell)"
+],
+[
+"EB",
+"Electric",
+"Purchase (Buy)"
+],
+[
+"EC",
+"Electric Code",
+"Other Case Types"
+],
+[
+"EE",
+"Energy Efficiency",
+"Other Case Types"
+],
+[
+"EF",
+"Electric Refund",
+"Other Case Types"
+],
+[
+"EI",
+"Electric",
+"Inquiry / Investigation"
+],
+[
+"EM",
+"Electric Merger",
+"Other Case Types"
+],
+[
+"EP",
+"Planning Electric",
+"Other Case Types"
+],
+[
+"ER",
+"Electric",
+"Rates"
+],
+[
+"ES",
+"Strategic Energy Assessment (SEA)",
+"Affiliated Interest"
+],
+[
+"ET",
+"Environmental Trust",
+"Other Case Types"
+],
+[
+"EV",
+"Electric",
+"Service"
+],
+[
+"FA",
+"Facilities (Renewable) Abandonments",
+"Other Case Types"
+],
+[
+"FB",
+"Federal Billing (Broadband)",
+"Other Case Types"
+],
+[
+"FE",
+"Focus on Energy",
+"Other Case Types"
+],
+[
+"FG",
+"Federal Grant",
+"Federal Fund Grant"
+],
+[
+"FM",
+"Federal Monitoring",
+"Federal Fund Grant"
+],
+[
+"FR",
+"Fuel Rules",
+"Other Case Types"
+],
+[
+"GA",
+"Gas",
+"Abandonment (Sell)"
+],
+[
+"GB",
+"Gas",
+"Purchase (Buy)"
+],
+[
+"GF",
+"General File (Old 5-)",
+"Other Case Types"
+],
+[
+"GI",
+"Gas",
+"Inquiry / Investigation"
+],
+[
+"GM",
+"Gas Merger",
+"Other Case Types"
+],
+[
+"GP",
+"Gas Supply Plan",
+"Other Case Types"
+],
+[
+"GR",
+"Gas",
+"Rates"
+],
+[
+"GT",
+"Grant Telephone",
+"Other Case Types"
+],
+[
+"GV",
+"Gas",
+"Service"
+],
+[
+"HA",
+"Heat",
+"Abandonment (Sell)"
+],
+[
+"HB",
+"Heat Buy",
+"Purchase (Buy)"
+],
+[
+"HC",
+"Time Keeping & Billing - Holding Company",
+"Time Keeping Category"
+],
+[
+"HI",
+"Heat",
+"Inquiry / Investigation"
+],
+[
+"HR",
+"Heat",
+"Rates"
+],
+[
+"HV",
+"Heat",
+"Service"
+],
+[
+"IC",
+"Intervenor Compensation",
+"Other Case Types"
+],
+[
+"IF",
+"Intervenor Funding",
+"Programs"
+],
+[
+"IR",
+"Railroad Investigation",
+"Railroad"
+],
+[
+"KA",
+"Telephone (FCC Form 481 filings)",
+"Other Case Types"
+],
+[
+"KB",
+"Telephone (FCC Form 555 filings)",
+"Other Case Types"
+],
+[
+"KC",
+"FCC CAF/ICC and Rate Floor Filings",
+"Other Case Types"
+],
+[
+"KD",
+"Telephone (FCC Section 63.17 applications)",
+"Other Case Types"
+],
+[
+"LE",
+"Lease Electric",
+"Other Case Types"
+],
+[
+"LL",
+"Lifeline",
+"Programs"
+],
+[
+"LLG",
+"Lifeline Grant",
+"Federal Fund Grant"
+],
+[
+"LM",
+"Load Management",
+"Other Case Types"
+],
+[
+"LO",
+"Legal Opinion",
+"Other Case Types"
+],
+[
+"LS",
+"Lead Service",
+"Other Case Types"
+],
+[
+"MA",
+"Median Arbitration",
+"Other Case Types"
+],
+[
+"MD",
+"Miscellaneous Dispute",
+"Affiliated Interest"
+],
+[
+"MP",
+"Mobile Home Part",
+"Other Case Types"
+],
+[
+"NC",
+"Necessity & Convenience (beauty)",
+"Other Case Types"
+],
+[
+"NF",
+"Non-Profit USF Funding",
+"Programs"
+],
+[
+"PA",
+"Purchase Audit",
+"Purchase Audit (Gas Supply Review)"
+],
+[
+"PC",
+"Pre Construction",
+"Other Case Types"
+],
+[
+"PD",
+"Pre-Docket - for Billing only - no files",
+"Time Keeping Category"
+],
+[
+"PF",
+"Public Fire Protection",
+"Rates"
+],
+[
+"PGA",
+"Purchase Gas Adjustment",
+"Other Case Types"
+],
+[
+"PI",
+"Public Interest",
+"Other Case Types"
+],
+[
+"PJ",
+"PSC Project (never billed to utility)",
+"Time Keeping Category"
+],
+[
+"PL",
+"Pipeline Safety Enforcement",
+"Other Case Types"
+],
+[
+"PLI",
+"Pipeline Investigation",
+"Inquiry / Investigation"
+],
+[
+"PR",
+"Public Records",
+"Time Keeping Category"
+],
+[
+"PS",
+"Pipeline Safety",
+"Other Case Types"
+],
+[
+"PW",
+"Purchased Water Adjustment Clause",
+"Other Case Types"
+],
+[
+"RA",
+"Remainder Assessment",
+"Other Case Types"
+],
+[
+"RC",
+"General RR Office",
+"Railroad"
+],
+[
+"RD",
+"Reconnection",
+"Reconnection"
+],
+[
+"RE",
+"Electric",
+"Rules"
+],
+[
+"RF",
+"Renewable Facilities",
+"Other Case Types"
+],
+[
+"RG",
+"Gas",
+"Rules"
+],
+[
+"RM",
+"Risk Management",
+"Other Case Types"
+],
+[
+"RR",
+"Time Keeping & Billing - Rail Road",
+"Time Keeping Category"
+],
+[
+"RS",
+"Relay System (Telecommunications)",
+"Programs"
+],
+[
+"RU",
+"Rules Utility",
+"Rules"
+],
+[
+"RV",
+"RR Fence, drainage, clearance investigations",
+"Railroad"
+],
+[
+"RW",
+"Reservoir Water",
+"Other Case Types"
+],
+[
+"RX",
+"Railroad Crossing Investigation",
+"Railroad"
+],
+[
+"SA",
+"Sewer",
+"Abandonment (Sell)"
+],
+[
+"SB",
+"All",
+"Stocks & Bonds"
+],
+[
+"SCA",
+"Steam Cost Adjustment",
+"Other Case Types"
+],
+[
+"SE",
+"Study Electric",
+"Other Case Types"
+],
+[
+"SF",
+"SEO Funding",
+"Programs"
+],
+[
+"SG",
+"Study Gas",
+"Other Case Types"
+],
+[
+"SH",
+"Study Heat",
+"Other Case Types"
+],
+[
+"SI",
+"Sewer",
+"Inquiry / Investigation"
+],
+[
+"SP",
+"Sewer Purchase",
+"Purchase (Buy)"
+],
+[
+"SQ",
+"Sewer Quick",
+"Simplified Rate Case"
+],
+[
+"SR",
+"Sewer",
+"Rates"
+],
+[
+"SS",
+"Study Sewer",
+"Other Case Types"
+],
+[
+"ST",
+"Study Telephone",
+"Other Case Types"
+],
+[
+"SV",
+"Stray Voltage",
+"Other Case Types"
+],
+[
+"SW",
+"Study Water",
+"Other Case Types"
+],
+[
+"TA",
+"Telephone",
+"Abandonment (Sell)"
+],
+[
+"TB",
+"Telephone",
+"Purchase (Buy)"
+],
+[
+"TC",
+"Telephone Contract",
+"Other Case Types"
+],
+[
+"TD",
+"Telephone Dispute",
+"Other Case Types"
+],
+[
+"TE",
+"Tariffs - Electric",
+"Rates"
+],
+[
+"TEP",
+"Telecommunication Equipment Purchase Program",
+"Other Case Types"
+],
+[
+"TF",
+"Telemedicine USF Funding",
+"Programs"
+],
+[
+"TG",
+"Tariffs - Gas",
+"Rates"
+],
+[
+"TH",
+"Tariffs - Steam Heat",
+"Rates"
+],
+[
+"TI",
+"Telephone",
+"Inquiry / Investigation"
+],
+[
+"TK",
+"Non Docketed Tracking",
+"Other Case Types"
+],
+[
+"TM",
+"Telephone Merger",
+"Other Case Types"
+],
+[
+"TN",
+"Telephone Numbers",
+"Other Case Types"
+],
+[
+"TO",
+"Telephone Reorganization",
+"Other Case Types"
+],
+[
+"TR",
+"Telephone",
+"Rates"
+],
+[
+"TRS",
+"Telephone Relay Services",
+"Other Case Types"
+],
+[
+"TU",
+"Tariffs - Combined Utility",
+"Rates"
+],
+[
+"TV",
+"Telephone",
+"Service"
+],
+[
+"TW",
+"Tariffs - Water",
+"Rates"
+],
+[
+"U",
+"Utility Code Replaced by EC",
+"Other Case Types"
+],
+[
+"UA",
+"Combined Utility",
+"Abandonment (Sell)"
+],
+[
+"UB",
+"Combined Utility",
+"Purchase (Buy)"
+],
+[
+"UC",
+"Utility Conservation",
+"Other Case Types"
+],
+[
+"UF",
+"Universal Service Fund",
+"Programs"
+],
+[
+"UI",
+"Combined Utility",
+"Inquiry / Investigation"
+],
+[
+"UM",
+"Utility Merger",
+"Purchase (Buy)"
+],
+[
+"UO",
+"USF Objections",
+"Other Case Types"
+],
+[
+"UQ",
+"Combined Quick",
+"Simplified Rate Case"
+],
+[
+"UR",
+"Combined Utility",
+"Rates"
+],
+[
+"US",
+"Uniform System of Accounts",
+"Other Case Types"
+],
+[
+"UV",
+"Combined Utility",
+"Service"
+],
+[
+"WA",
+"Water",
+"Abandonment (Sell)"
+],
+[
+"WB",
+"Water",
+"Purchase (Buy)"
+],
+[
+"WC",
+"Water Carrier",
+"Railroad"
+],
+[
+"WF",
+"Wind Filings",
+"Other Case Types"
+],
+[
+"WI",
+"Water",
+"Inquiry / Investigation"
+],
+[
+"WM",
+"Water Merger",
+"Purchase (Buy)"
+],
+[
+"WQ",
+"Water Quick",
+"Simplified Rate Case"
+],
+[
+"WR",
+"Water",
+"Rates"
+],
+[
+"WV",
+"Water",
+"Service"
+],
+[
+"XJ",
+"Annual Reports (BFS)",
+"Other Case Types"
+],
+[
+"YA",
+"Abandonment",
+"Holding Company"
+],
+[
+"YI",
+"Investigation",
+"Holding Company"
+],
+[
+"YO",
+"Organization",
+"Holding Company"
+]
+]

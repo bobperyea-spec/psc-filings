@@ -1,0 +1,6 @@
+__pycache__/
+site/
+data/debug/
+data/files/
+data/viewer.html
+data/run.log

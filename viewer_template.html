@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WI PSC Watch</title>
+<meta name="description" content="Recent filings at the Public Service Commission of Wisconsin, searchable and updated hourly.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22 width=%2264%22 height=%2264%22 role=%22img%22 aria-label=%22WI PSC Watch logo%22%3E %3Crect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%231d4e89%22/%3E %3Ccircle cx=%2227%22 cy=%2227%22 r=%2216%22 fill=%22%23fff7d6%22 stroke=%22%23f4b400%22 stroke-width=%225%22/%3E %3Cpath d=%22M30 13 L20 29 H27 L24 41 L35 24 H28 Z%22 fill=%22%23e8590c%22 stroke=%22%23b8430a%22 stroke-width=%221%22 stroke-linejoin=%22round%22/%3E %3Cpath d=%22M39 39 L52 52%22 stroke=%22%23f4b400%22 stroke-width=%227%22 stroke-linecap=%22round%22/%3E %3Ccircle cx=%2221%22 cy=%2221%22 r=%222.2%22 fill=%22%23fff%22 opacity=%22.8%22/%3E %3C/svg%3E">
+<meta name="description" content="Recent filings with the Public Service Commission of Wisconsin, with case names and case type codes.">
+<style>
+:root{--bg:#f5f6f8;--panel:#fff;--ink:#1b2430;--muted:#5b6878;--line:#e0e4ea;--accent:#0a5aa8;--watch:#fff3cf;--chip:#edf1f6;--bad:#a33;--code:#e7f0fb;--codeink:#0a4a8c}
+@media (prefers-color-scheme: dark){:root{--bg:#11151b;--panel:#191f27;--ink:#e5eaf0;--muted:#95a2b2;--line:#29313c;--accent:#74b4ff;--watch:#3b3416;--chip:#222a35;--bad:#f08a8a;--code:#1d2e44;--codeink:#9fcbff}}
+*{box-sizing:border-box}
+[hidden]{display:none !important}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{padding:20px 16px 4px;max-width:1440px;margin:0 auto}
+h1{margin:0;font-size:24px}
+.brand{display:flex;align-items:center;gap:14px}.logo svg{width:56px;height:56px;display:block}.tagline{color:var(--muted);font-size:14px;margin-top:2px}
+.meta{color:var(--muted);font-size:13px;margin-top:4px}
+.disclaimer{margin:10px 0 0;padding:9px 12px;border-left:4px solid #b7791f;background:#fff8e6;color:#4a3a12;font-size:14px;max-width:80ch;border-radius:0 6px 6px 0}
+@media (prefers-color-scheme:dark){.disclaimer{background:#2d2610;color:#f3e3b5}}
+.donate{margin:28px auto 40px;padding:20px;text-align:center;max-width:520px}.donate p{margin:0 0 12px;color:var(--muted);font-size:14px}
+.note{color:var(--muted);font-size:13px;margin:6px 0 0;max-width:80ch}
+main{max-width:1440px;margin:0 auto;padding:0 16px 40px}
+details#legend{background:var(--panel);border:1px solid var(--line);border-radius:8px;margin:14px 0;padding:0 14px}
+details#legend summary{cursor:pointer;padding:11px 0;font-weight:600}
+.legendbody{padding-bottom:14px}
+.legendbody p{margin:0 0 10px;max-width:90ch}
+code{background:var(--chip);padding:1px 5px;border-radius:4px;font-size:13px}
+.legendtable-wrap{max-height:340px;overflow:auto;border:1px solid var(--line);border-radius:6px;margin-top:8px}
+.legendtable-wrap table{min-width:0}
+.legendtable-wrap tbody tr{cursor:pointer}
+.legendtable-wrap tbody tr:hover td{background:var(--chip)}
+.filters{display:grid;grid-template-columns:2fr 1.3fr 1.1fr 1.3fr 1fr .9fr .9fr;gap:8px;margin:12px 0}
+.filters input,.filters select,#legendq{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);font:inherit}
+.checks{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:10px;font-size:14px}
+.checks label{display:flex;gap:6px;align-items:center;cursor:pointer}
+#dockcard{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 14px;margin:0 0 12px}
+#dockcard h2{margin:0 0 4px;font-size:17px}
+#dockcard .row{color:var(--muted);font-size:13px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:1040px}
+th[data-sort]{cursor:pointer;user-select:none}th[data-sort]:hover{color:var(--text,#111)}th[data-sort]::after{content:" \2195";opacity:.35}th.asc::after{content:" \25B2";opacity:1}th.desc::after{content:" \25BC";opacity:1}
+th{text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap;position:sticky;top:0;background:var(--panel)}
+td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+tr.watch td{background:var(--watch)}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.chip{display:inline-block;background:var(--chip);border-radius:4px;padding:1px 6px;font-size:12px;color:var(--muted);margin-right:6px}
+.docket{white-space:nowrap}
+.docket a.dk{color:var(--ink)}
+.docket .code{background:var(--code);color:var(--codeink);border-radius:4px;padding:0 4px;font-weight:700;cursor:help}
+.docket .sub{display:block;color:var(--muted);font-size:12px;white-space:normal;max-width:170px}
+.casename{min-width:220px;max-width:340px}
+.casename .sum{font-size:15px}
+.casename .name{font-size:13px;color:var(--muted);margin-top:2px;display:-webkit-box;-webkit-line-clamp:3;line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.muted{color:var(--muted)}
+.lock{color:var(--bad)}
+.pager{display:flex;gap:12px;align-items:center;justify-content:space-between;margin:12px 0;color:var(--muted);font-size:14px}
+button{padding:6px 12px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:6px;font:inherit;cursor:pointer}
+button:disabled{opacity:.45;cursor:default}
+.empty{padding:28px;text-align:center;color:var(--muted)}
+@media (max-width:900px){.filters{grid-template-columns:1fr 1fr}.filters input:first-child{grid-column:1/-1}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><span class="logo" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" focusable="false">
+  <rect width="64" height="64" rx="14" fill="#1d4e89"/>
+  <circle cx="27" cy="27" r="16" fill="#fff7d6" stroke="#f4b400" stroke-width="5"/>
+  <path d="M30 13 L20 29 H27 L24 41 L35 24 H28 Z" fill="#e8590c" stroke="#b8430a" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M39 39 L52 52" stroke="#f4b400" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="21" cy="21" r="2.2" fill="#fff" opacity=".8"/>
+</svg>
+</span><div><h1>WI PSC Watch</h1><div class="tagline">Recent filings at the Public Service Commission of Wisconsin</div></div></div>
+  <div class="meta" id="meta">Loading...</div>
+  <p class="disclaimer"><strong>Please note:</strong> We can't guarantee the accuracy of this tool, but we do our best to keep it correct and current. Confirm anything important on the PSC's own site.</p>
+  <p class="note">Unofficial listing compiled from the PSC's Electronic Records Filing system. Links open the filing on the PSC's own site. Confidential filings are listed but not linked. The bold summary on each case (project type and counties) is generated automatically from the case title; a county appears only when the title names it.</p>
+</header>
+<main>
+  <details id="legend">
+    <summary>How to read the case code (the letters in a docket number)</summary>
+    <div class="legendbody">
+      <p>Every docket number has three parts: the <strong>utility ID</strong>, the <strong>case code</strong>, and the <strong>case number</strong>. For example, <code>6680-UR-124</code> is utility 6680 (Wisconsin Power and Light Company), case code <strong>UR</strong> (combined utility rates), case number 124. Most codes are two letters; a few are one or three (CPF and PGA, for instance). Click a code in the table to filter the list to that case type.</p>
+      <input id="legendq" type="search" placeholder="Find a code or meaning, e.g. GP or gas supply">
+      <div class="legendtable-wrap"><table id="legendtable">
+        <thead><tr><th>Code</th><th>Meaning</th><th>Category</th><th>Filings loaded</th></tr></thead>
+        <tbody id="legendrows"></tbody>
+      </table></div>
+    </div>
+  </details>
+
+  <div class="filters">
+    <input id="q" type="search" placeholder="Search case name, description, docket, filer">
+    <select id="code"><option value="">All case types</option></select>
+    <select id="county"><option value="">All counties</option></select>
+    <select id="type"><option value="">All document types</option></select>
+    <input id="docket" type="search" placeholder="Docket contains">
+    <input id="from" type="date" aria-label="From date">
+    <input id="to" type="date" aria-label="To date">
+  </div>
+  <div class="checks">
+    <label><input type="checkbox" id="hideLists" checked> Hide mailing and service lists</label>
+    <label id="onlyLocalLabel" hidden><input type="checkbox" id="onlyLocal"> Only filings with a saved copy</label>
+    <label><input type="checkbox" id="onlyWatch"> Watchlist only</label>
+  </div>
+  <div id="dockcard" hidden></div>
+  <div class="pager"><span id="count"></span><span><button id="prev">Previous</button> <button id="next">Next</button></span></div>
+  <div class="panel"><table>
+    <thead><tr><th data-sort="w">Received</th><th data-sort="k">Docket</th><th data-sort="c">Case</th><th data-sort="t">Doc type</th><th data-sort="d">Description</th><th data-sort="f">Filed by</th><th data-sort="s">Size</th><th>Links</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table><div class="empty" id="empty" hidden>No filings match.</div></div>
+  <div class="pager"><span></span><span><button id="prev2">Previous</button> <button id="next2">Next</button></span></div>
+</main>
+<footer class="donate" id="donate" __DONATE_ATTR__>
+  <p>This site is free to use. If it helps you, you can chip in to keep it running.</p>
+__DONATE__
+</footer>
+<script id="data" type="application/json">__DATA__</script>
+<script>
+(async function () {
+const $ = id => document.getElementById(id);
+const PAGE = 100;
+let PAYLOAD;
+try {
+  const inline = $('data').textContent.trim();
+  PAYLOAD = inline ? JSON.parse(inline) : await (await fetch('data.json', {cache: 'no-cache'})).json();
+} catch (e) {
+  $('meta').textContent = 'Could not load the filing data. Try reloading the page.';
+  return;
+}
+const DATA = PAYLOAD.rows || [], DOCKETS = PAYLOAD.dockets || {}, TYPES = PAYLOAD.types || {}, META = PAYLOAD.meta || {};
+const watch = (META.watch || []).map(s => s.toLowerCase()).filter(Boolean);
+let page = 0, view = [];
+
+function parseDocket(k) {
+  const m = /^(\d+)-([A-Z]+)-(\d+)$/.exec(k || '');
+  return m ? {util: m[1], code: m[2], seq: m[3]} : null;
+}
+const codeCounts = {};
+for (const r of DATA) {
+  const p = parseDocket(r.k);
+  r._p = p;
+  r._code = p ? p.code : '';
+  const di = DOCKETS[r.k];
+  r._name = di && di.n ? di.n : '';
+  const ty = TYPES[r._code];
+  r._label = ty ? ty.l : (r._code ? 'Code not in the PSC list' : '');
+  r._sum = di && di.y ? di.y : '';
+  r._counties = di && di.o ? di.o : [];
+  r._ai = !!(di && di.m === 'ai');
+  r._h = [r.d, r.k, r.f, r.t, r.r, r._name, r._label, r._code, r._sum, r._counties.join(' ')].join(' ').toLowerCase();
+  r._w = watch.length > 0 && watch.some(w => r._h.includes(w));
+  if (r._code) codeCounts[r._code] = (codeCounts[r._code] || 0) + 1;
+}
+
+function el(tag, props, ...kids) {
+  const e = document.createElement(tag);
+  Object.assign(e, props || {});
+  for (const k of kids) e.append(k);
+  return e;
+}
+function link(text, href, extra) {
+  return el('a', Object.assign({textContent: text, href, target: '_blank', rel: 'noopener'}, extra || {}));
+}
+function safeHref(u) { return /^https?:\/\//i.test(u || '') ? u : ''; }
+function localHref(p) { return p ? p.split('/').map(encodeURIComponent).join('/') : ''; }
+function fmtCounties(list) { return list.length > 4 ? list.slice(0, 3).join(', ') + ' +' + (list.length - 3) + ' more' : list.join(', '); }
+function fmtSize(kb) { return kb == null ? '' : (kb >= 1024 ? (kb / 1024).toFixed(1) + ' MB' : kb + ' KB'); }
+function fmtDate(s) {
+  if (!s) return '';
+  const [d, t] = s.split(' ');
+  const [y, mo, da] = d.split('-').map(Number);
+  const [h, mi] = (t || '00:00').split(':').map(Number);
+  const opts = {month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'};
+  if (y !== new Date().getFullYear()) opts.year = 'numeric';
+  return new Date(y, mo - 1, da, h, mi).toLocaleString('en-US', opts);
+}
+
+$('meta').textContent = `${DATA.length.toLocaleString()} filings, last updated ${META.generated || ''}` +
+  (watch.length ? `, watchlist: ${(META.watch || []).join(', ')}` : '');
+if (DATA.some(r => r.l)) $('onlyLocalLabel').hidden = false;
+
+// filter dropdowns
+const docTypes = [...new Set(DATA.map(r => r.t).filter(Boolean))].sort();
+for (const t of docTypes) $('type').append(el('option', {value: t, textContent: t}));
+for (const c of Object.keys(codeCounts).sort()) {
+  const ty = TYPES[c];
+  $('code').append(el('option', {value: c, textContent: `${c} - ${ty ? ty.l : 'Code not in the PSC list'}`}));
+}
+
+const countySet = new Set();
+for (const r of DATA) for (const c of r._counties) countySet.add(c);
+for (const c of [...countySet].sort()) $('county').append(el('option', {value: c, textContent: c}));
+
+// legend (key to the case codes)
+const legendRows = Object.keys(TYPES).sort().map(c => ({c, d: TYPES[c].d, g: TYPES[c].g, l: TYPES[c].l, n: codeCounts[c] || 0}));
+function renderLegend() {
+  const q = $('legendq').value.trim().toLowerCase();
+  const body = $('legendrows');
+  body.replaceChildren();
+  for (const x of legendRows) {
+    if (q && !(x.c + ' ' + x.d + ' ' + x.g + ' ' + x.l).toLowerCase().includes(q)) continue;
+    const tr = el('tr');
+    tr.append(el('td', {textContent: x.c, style: 'font-weight:700'}), el('td', {textContent: x.l}),
+              el('td', {textContent: x.g, className: 'muted'}), el('td', {textContent: x.n ? String(x.n) : '', className: 'muted'}));
+    tr.addEventListener('click', () => { $('code').value = codeCounts[x.c] ? x.c : ''; if (codeCounts[x.c]) { applyFilters(); window.scrollTo(0, 0); } });
+    body.append(tr);
+  }
+}
+$('legendq').addEventListener('input', renderLegend);
+renderLegend();
+
+function showDocketCard() {
+  const v = $('docket').value.trim();
+  const key = Object.keys(DOCKETS).find(k => k.toLowerCase() === v.toLowerCase());
+  const card = $('dockcard');
+  if (!key) { card.hidden = true; return; }
+  const d = DOCKETS[key], p = parseDocket(key), ty = p && TYPES[p.code];
+  card.replaceChildren(
+    el('h2', {textContent: d.n || key}),
+    el('div', {className: 'row', textContent: [key, d.y ? d.y + (d.o && d.o.length ? ' - ' + fmtCounties(d.o) : '') : (ty ? ty.l : ''), d.s ? 'Status: ' + d.s : '', d.a ? 'Applicant: ' + d.a : '', d.c ? 'Case coordinator: ' + d.c : ''].filter(Boolean).join('  |  ')})
+  );
+  if (safeHref(d.u)) card.append(link('Open this docket on the PSC site', safeHref(d.u)));
+  card.hidden = false;
+}
+
+function applyFilters() {
+  const q = $('q').value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  const type = $('type').value, code = $('code').value, county = $('county').value, dk = $('docket').value.trim().toLowerCase();
+  const from = $('from').value, to = $('to').value;
+  const hideLists = $('hideLists').checked, onlyLocal = $('onlyLocal').checked, onlyWatch = $('onlyWatch').checked;
+  view = DATA.filter(r => {
+    if (type && r.t !== type) return false;
+    if (code && r._code !== code) return false;
+    if (county && !r._counties.includes(county)) return false;
+    if (dk && !(r.k || '').toLowerCase().includes(dk)) return false;
+    if (from && (r.w || '') < from) return false;
+    if (to && (r.w || '').slice(0, 10) > to) return false;
+    if (hideLists && /mailing|service list/i.test(r.t || '')) return false;
+    if (onlyLocal && !r.l) return false;
+    if (onlyWatch && !r._w) return false;
+    return q.every(w => r._h.includes(w));
+  });
+  sortView();
+  page = 0;
+  showDocketCard();
+  render();
+}
+
+let sortKey = 'w', sortDir = -1;
+function sortValue(r, k) {
+  if (k === 'c') return (r._sum || r._name || '').toLowerCase();
+  if (k === 's') return Number(r.s) || 0;
+  return String(r[k] || '').toLowerCase();
+}
+function sortView() {
+  view.sort((a, b) => {
+    const x = sortValue(a, sortKey), y = sortValue(b, sortKey);
+    return (x < y ? -1 : x > y ? 1 : 0) * sortDir || (b.w || '').localeCompare(a.w || '');
+  });
+  document.querySelectorAll('th[data-sort]').forEach(th => {
+    th.classList.toggle('asc', th.dataset.sort === sortKey && sortDir === 1);
+    th.classList.toggle('desc', th.dataset.sort === sortKey && sortDir === -1);
+  });
+}
+document.querySelectorAll('th[data-sort]').forEach(th => th.addEventListener('click', () => {
+  const k = th.dataset.sort;
+  if (sortKey === k) sortDir = -sortDir; else { sortKey = k; sortDir = k === 'w' || k === 's' ? -1 : 1; }
+  sortView(); page = 0; render();
+}));
+
+function docketCell(r) {
+  const td = el('td', {className: 'docket'});
+  if (!r._p) { td.append(document.createTextNode(r.k || '')); return td; }
+  const a = el('a', {href: '#', className: 'dk', title: 'Show only this case'});
+  a.append(document.createTextNode(r._p.util + '-'),
+           el('span', {className: 'code', textContent: r._p.code, title: r._label}),
+           document.createTextNode('-' + r._p.seq));
+  a.addEventListener('click', ev => { ev.preventDefault(); $('docket').value = r.k; applyFilters(); window.scrollTo(0, 0); });
+  td.append(a, el('span', {className: 'sub', textContent: r._label}));
+  return td;
+}
+
+function render() {
+  const start = page * PAGE, slice = view.slice(start, start + PAGE);
+  const body = $('rows');
+  body.replaceChildren();
+  for (const r of slice) {
+    const tr = el('tr');
+    if (r._w) tr.className = 'watch';
+    tr.append(el('td', {textContent: fmtDate(r.w), className: 'muted'}));
+    tr.append(docketCell(r));
+    const cn = el('td', {className: 'casename'});
+    if (r._sum) {
+      const sm = el('div', {className: 'sum', title: r._ai ? 'Summary written with AI help from the case title' : 'Summarized from the case title'});
+      sm.append(el('strong', {textContent: r._sum}));
+      if (r._counties.length) sm.append(document.createTextNode(' - ' + fmtCounties(r._counties)));
+      else if (TYPES[r._code] && TYPES[r._code].g === 'Construction') sm.append(el('span', {className: 'muted', textContent: ' (county not stated in title)'}));
+      cn.append(sm);
+    }
+    if (r._name) cn.append(el('div', {className: 'name', textContent: r._name, title: r._name}));
+    else if (r._p) cn.append(el('span', {className: 'muted', textContent: '(case name not loaded yet)'}));
+    tr.append(cn);
+    tr.append(el('td', {textContent: r.t || ''}));
+    const ds = el('td');
+    if (r.c === 'confidential') {
+      ds.append(el('span', {className: 'lock', textContent: 'Confidential: '}), document.createTextNode(r.d || ''));
+    } else if (r.l) {
+      ds.append(link(r.d || '(untitled)', localHref(r.l)));
+    } else if (safeHref(r.u)) {
+      ds.append(link(r.d || '(untitled)', safeHref(r.u)));
+    } else {
+      ds.append(document.createTextNode(r.d || ''));
+    }
+    ds.append(el('div', {className: 'muted', textContent: 'PSC Ref ' + r.r}));
+    tr.append(ds);
+    tr.append(el('td', {textContent: r.f || ''}));
+    tr.append(el('td', {textContent: fmtSize(r.s), className: 'muted'}));
+    const lk = el('td');
+    if (r.l) lk.append(el('span', {className: 'chip', textContent: (r.x || 'file').toUpperCase() + ' saved'}));
+    else if (r.c === 'skipped_size') lk.append(el('span', {className: 'chip', textContent: 'large file'}));
+    if (safeHref(r.u) && r.c !== 'confidential') lk.append(link('PSC site', safeHref(r.u)));
+    tr.append(lk);
+    body.append(tr);
+  }
+  $('empty').hidden = view.length > 0;
+  const last = Math.min(start + PAGE, view.length);
+  $('count').textContent = view.length ? `${start + 1}-${last} of ${view.length.toLocaleString()}` : '0 results';
+  for (const id of ['prev', 'prev2']) $(id).disabled = page === 0;
+  for (const id of ['next', 'next2']) $(id).disabled = last >= view.length;
+}
+for (const id of ['q', 'code', 'county', 'type', 'docket', 'from', 'to', 'hideLists', 'onlyLocal', 'onlyWatch'])
+  $(id).addEventListener('input', applyFilters);
+for (const id of ['prev', 'prev2']) $(id).addEventListener('click', () => { page--; render(); window.scrollTo(0, 0); });
+for (const id of ['next', 'next2']) $(id).addEventListener('click', () => { page++; render(); window.scrollTo(0, 0); });
+applyFilters();
+})();
+</script>
+</body>
+</html>

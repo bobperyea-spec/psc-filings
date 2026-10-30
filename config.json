@@ -1,0 +1,22 @@
+{
+  "data_dir": "data",
+  "lookback_days": 2,
+  "download": true,
+  "max_download_mb": 5,
+  "delay_seconds": 1.5,
+  "viewer_days": 120,
+  "watch_terms": [
+    "Beloit",
+    "Rock County",
+    "6680-"
+  ],
+  "selectors": {
+    "start": "#datepicker_start",
+    "end": "#datepicker_end",
+    "submit": "#btn_search"
+  },
+  "llm_summaries": true,
+  "llm_model": "claude-haiku-5-5",
+  "max_llm_per_run": 60,
+  "custom_domain": "wipscwatch.site"
+}

@@ -1,0 +1,68 @@
+name: Update PSC filings site
+
+on:
+  schedule:
+    - cron: "17 * * * *"        # every hour at :17 (times are UTC)
+  workflow_dispatch:             # lets you run it by hand from the Actions tab
+    inputs:
+      since:
+        description: "Optional backfill start date, YYYY-MM-DD"
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: psc-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
+
+      - name: Run the tests
+        run: python -m unittest discover -s tests
+
+      - name: Collect new filings and build the site
+        env:
+          SINCE: ${{ github.event.inputs.since }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}   # optional; leave the secret unset to run without AI
+        run: python psc_watcher.py run --site ${SINCE:+--since "$SINCE"}
+
+      - name: Save the database back to the repository
+        run: |
+          git config user.name "psc-watcher"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/filings.db
+          git diff --cached --quiet || git commit -m "Update filings"
+          git push
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: update
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

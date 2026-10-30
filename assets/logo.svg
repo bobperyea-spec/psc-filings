@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="WI PSC Watch logo">
+  <rect width="64" height="64" rx="14" fill="#1d4e89"/>
+  <circle cx="27" cy="27" r="16" fill="#fff7d6" stroke="#f4b400" stroke-width="5"/>
+  <path d="M30 13 L20 29 H27 L24 41 L35 24 H28 Z" fill="#e8590c" stroke="#b8430a" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M39 39 L52 52" stroke="#f4b400" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="21" cy="21" r="2.2" fill="#fff" opacity=".8"/>
+</svg>
