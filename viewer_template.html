@@ -99,6 +99,8 @@ button:disabled{opacity:.45;cursor:default}
     <input id="docket" type="search" placeholder="Docket contains">
     <input id="from" type="date" aria-label="From date">
     <input id="to" type="date" aria-label="To date">
+    <button id="search" type="button">Search</button>
+    <button id="clear" type="button">Clear</button>
   </div>
   <div class="checks">
     <label><input type="checkbox" id="hideLists" checked> Hide mailing and service lists</label>
@@ -335,6 +337,13 @@ for (const id of ['q', 'code', 'county', 'type', 'docket', 'from', 'to', 'hideLi
   $(id).addEventListener('input', applyFilters);
 for (const id of ['prev', 'prev2']) $(id).addEventListener('click', () => { page--; render(); window.scrollTo(0, 0); });
 for (const id of ['next', 'next2']) $(id).addEventListener('click', () => { page++; render(); window.scrollTo(0, 0); });
+$('search').addEventListener('click', () => { applyFilters(); $('count').scrollIntoView({behavior: 'smooth', block: 'center'}); });
+$('clear').addEventListener('click', () => {
+  for (const id of ['q', 'code', 'county', 'type', 'docket', 'from', 'to']) $(id).value = '';
+  $('hideLists').checked = true; $('onlyLocal').checked = false; $('onlyWatch').checked = false;
+  applyFilters();
+});
+for (const id of ['q', 'docket']) $(id).addEventListener('keydown', ev => { if (ev.key === 'Enter') $('search').click(); });
 applyFilters();
 })();
 </script>
