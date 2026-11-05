@@ -8,6 +8,9 @@ on:
       since:
         description: "Optional backfill start date, YYYY-MM-DD"
         required: false
+      until:
+        description: "Optional backfill end date, YYYY-MM-DD (use with since, for one chunk at a time)"
+        required: false
 
 permissions:
   contents: write
@@ -39,8 +42,9 @@ jobs:
       - name: Collect new filings and build the site
         env:
           SINCE: ${{ github.event.inputs.since }}
+          UNTIL: ${{ github.event.inputs.until }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}   # optional; leave the secret unset to run without AI
-        run: python psc_watcher.py run --site ${SINCE:+--since "$SINCE"}
+        run: python psc_watcher.py run --site ${SINCE:+--since "$SINCE"} ${UNTIL:+--until "$UNTIL"}
 
       - name: Save the database back to the repository
         run: |
