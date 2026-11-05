@@ -768,6 +768,27 @@ class BrowserSession:
 # commands
 # --------------------------------------------------------------------------
 
+def collect_range(s, start, end, debug, log=print):
+    """Search start..end. ERF only shows part of a big result set, so when fewer rows come back
+    than ERF says there are, split the window in half and search each half (down to one day)."""
+    html_text, url = s.search(start, end)
+    (debug / "last_results.html").write_text(html_text, encoding="utf-8")
+    rows, total = parse_results(html_text, url)
+    if total is not None and len(rows) < total and (end - start).days > 1:
+        mid = start + (end - start) // 2
+        log(f"{start} to {end}: ERF reported {total} rows but only {len(rows)} parsed; splitting at {mid}.")
+        left, lt = collect_range(s, start, mid, debug, log)
+        right, rt = collect_range(s, mid, end, debug, log)
+        seen, merged = set(), []
+        for r in left + right:
+            key = r.get("psc_ref") or id(r)
+            if key not in seen:
+                seen.add(key)
+                merged.append(r)
+        return merged, len(merged)
+    return rows, total
+
+
 def cmd_run(args, cfg):
     data_dir = data_path(cfg)
     conn = connect(data_dir)
@@ -776,11 +797,9 @@ def cmd_run(args, cfg):
         today - dt.timedelta(days=cfg["lookback_days"])
     end = dt.datetime.strptime(args.until, "%Y-%m-%d").date() if args.until else today + dt.timedelta(days=1)
     with BrowserSession(cfg, headed=args.headed) as s:
-        html_text, url = s.search(start, end)
         debug = data_dir / "debug"
         debug.mkdir(exist_ok=True)
-        (debug / "last_results.html").write_text(html_text, encoding="utf-8")
-        rows, total = parse_results(html_text, url)
+        rows, total = collect_range(s, start, end, debug)
         if total == 0 and not rows:
             # A quiet stretch (weekends, holidays): ERF says "Total Return: 0". That is a valid result.
             print(f"{start} to {end}: ERF reports no filings in this range.")
