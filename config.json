@@ -4,7 +4,7 @@
   "download": true,
   "max_download_mb": 5,
   "delay_seconds": 1.5,
-  "viewer_days": 120,
+  "viewer_days": 366,
   "watch_terms": [
     "Beloit",
     "Rock County",
