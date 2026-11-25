@@ -31,7 +31,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:4px;font-size:13px}
 .legendtable-wrap table{min-width:0}
 .legendtable-wrap tbody tr{cursor:pointer}
 .legendtable-wrap tbody tr:hover td{background:var(--chip)}
-.filters{display:grid;grid-template-columns:2fr 1.3fr 1.1fr 1.3fr 1fr .9fr .9fr;gap:8px;margin:12px 0}
+.filters{display:grid;grid-template-columns:1.6fr 1.2fr 1fr 1.2fr 1.6fr .9fr .9fr;gap:8px;margin:12px 0}
 .filters input,.filters select,#legendq{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);font:inherit}
 .checks{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:10px;font-size:14px}
 .checks label{display:flex;gap:6px;align-items:center;cursor:pointer}
@@ -96,7 +96,7 @@ button:disabled{opacity:.45;cursor:default}
     <select id="code"><option value="">All case types</option></select>
     <select id="county"><option value="">All counties</option></select>
     <select id="type"><option value="">All document types</option></select>
-    <input id="docket" type="search" placeholder="Docket, e.g. 6680UR124 (dashes added for you)" inputmode="text" autocapitalize="characters" autocomplete="off">
+    <input id="docket" type="search" placeholder="Docket, e.g. 6680UR124" title="Type the docket number without dashes; they are added for you" inputmode="text" autocapitalize="characters" autocomplete="off">
     <input id="from" type="date" aria-label="From date">
     <input id="to" type="date" aria-label="To date">
     <button id="search" type="button">Search</button>
