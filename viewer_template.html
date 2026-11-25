@@ -342,16 +342,25 @@ function render() {
 }
 for (const id of ['q', 'code', 'county', 'type', 'docket', 'from', 'to', 'hideLists', 'onlyLocal', 'onlyWatch'])
   $(id).addEventListener('input', applyFilters);
-// Auto-dash the docket box as people type or paste (not while deleting, so backspace works).
-$('docket').addEventListener('input', ev => {
-  if (/^delete/.test(ev.inputType || '')) return;
-  const box = $('docket'), raw = box.value, pos = box.selectionStart;
-  const out = fmtDocket(raw);
-  if (out === raw) return;
-  const before = fmtDocket(raw.slice(0, pos)).length;
-  box.value = out;
-  box.setSelectionRange(before, before);
-});
+// The main search box mixes words and dockets, so only a whole token shaped like a docket
+// (digits, letters, digits, e.g. 6680ur124) gets dashes; ordinary words are left alone.
+const dashTokens = v => String(v).replace(/\b(\d{1,4})([A-Za-z]{1,3})(\d{1,6})\b/g, (m, a, b, c) => a + '-' + b.toUpperCase() + '-' + c);
+function autoDash(id, fn) {
+  const box = $(id);
+  const run = () => {
+    const raw = box.value, pos = box.selectionStart, out = fn(raw);
+    if (out === raw) return;
+    box.value = out;
+    const p = Math.max(0, out.length - (raw.length - pos));
+    try { box.setSelectionRange(p, p); } catch (e) {}
+    applyFilters();
+  };
+  box.addEventListener('input', ev => { if (!/^delete/.test(ev.inputType || '')) run(); });
+  box.addEventListener('change', run);
+  box.addEventListener('blur', run);
+}
+autoDash('q', dashTokens);
+autoDash('docket', fmtDocket);
 for (const id of ['prev', 'prev2']) $(id).addEventListener('click', () => { page--; render(); window.scrollTo(0, 0); });
 for (const id of ['next', 'next2']) $(id).addEventListener('click', () => { page++; render(); window.scrollTo(0, 0); });
 $('search').addEventListener('click', () => { applyFilters(); $('count').scrollIntoView({behavior: 'smooth', block: 'center'}); });
