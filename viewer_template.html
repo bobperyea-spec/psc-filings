@@ -96,7 +96,7 @@ button:disabled{opacity:.45;cursor:default}
     <select id="code"><option value="">All case types</option></select>
     <select id="county"><option value="">All counties</option></select>
     <select id="type"><option value="">All document types</option></select>
-    <input id="docket" type="search" placeholder="Docket contains">
+    <input id="docket" type="search" placeholder="Docket, e.g. 6680UR124 (dashes added for you)" inputmode="text" autocapitalize="characters" autocomplete="off">
     <input id="from" type="date" aria-label="From date">
     <input id="to" type="date" aria-label="To date">
     <button id="search" type="button">Search</button>
@@ -140,6 +140,12 @@ function parseDocket(k) {
   const m = /^(\d+)-([A-Z]+)-(\d+)$/.exec(k || '');
   return m ? {util: m[1], code: m[2], seq: m[3]} : null;
 }
+// Docket numbers look like 6680-UR-124 (utility ID, case code, case number).
+// Let people type them without dashes: a dash goes in wherever digits meet letters.
+function fmtDocket(v) {
+  return String(v || '').toUpperCase().replace(/[^A-Z0-9]/g, '').replace(/(\d)(?=[A-Z])|([A-Z])(?=\d)/g, '$1$2-');
+}
+const stripDash = v => String(v || '').toLowerCase().replace(/[\s-]/g, '');
 const codeCounts = {};
 for (const r of DATA) {
   const p = parseDocket(r.k);
@@ -152,6 +158,7 @@ for (const r of DATA) {
   r._sum = di && di.y ? di.y : '';
   r._counties = di && di.o ? di.o : [];
   r._ai = !!(di && di.m === 'ai');
+  r._kn = stripDash(r.k);
   r._h = [r.d, r.k, r.f, r.t, r.r, r._name, r._label, r._code, r._sum, r._counties.join(' ')].join(' ').toLowerCase();
   r._w = watch.length > 0 && watch.some(w => r._h.includes(w));
   if (r._code) codeCounts[r._code] = (codeCounts[r._code] || 0) + 1;
@@ -230,20 +237,20 @@ function showDocketCard() {
 
 function applyFilters() {
   const q = $('q').value.trim().toLowerCase().split(/\s+/).filter(Boolean);
-  const type = $('type').value, code = $('code').value, county = $('county').value, dk = $('docket').value.trim().toLowerCase();
+  const type = $('type').value, code = $('code').value, county = $('county').value, dk = stripDash($('docket').value);
   const from = $('from').value, to = $('to').value;
   const hideLists = $('hideLists').checked, onlyLocal = $('onlyLocal').checked, onlyWatch = $('onlyWatch').checked;
   view = DATA.filter(r => {
     if (type && r.t !== type) return false;
     if (code && r._code !== code) return false;
     if (county && !r._counties.includes(county)) return false;
-    if (dk && !(r.k || '').toLowerCase().includes(dk)) return false;
+    if (dk && !r._kn.includes(dk)) return false;
     if (from && (r.w || '') < from) return false;
     if (to && (r.w || '').slice(0, 10) > to) return false;
     if (hideLists && /mailing|service list/i.test(r.t || '')) return false;
     if (onlyLocal && !r.l) return false;
     if (onlyWatch && !r._w) return false;
-    return q.every(w => r._h.includes(w));
+    return q.every(w => r._h.includes(w) || (/\d/.test(w) && /[a-z]/.test(w) && r._kn.includes(stripDash(w))));
   });
   sortView();
   page = 0;
@@ -335,6 +342,16 @@ function render() {
 }
 for (const id of ['q', 'code', 'county', 'type', 'docket', 'from', 'to', 'hideLists', 'onlyLocal', 'onlyWatch'])
   $(id).addEventListener('input', applyFilters);
+// Auto-dash the docket box as people type or paste (not while deleting, so backspace works).
+$('docket').addEventListener('input', ev => {
+  if (/^delete/.test(ev.inputType || '')) return;
+  const box = $('docket'), raw = box.value, pos = box.selectionStart;
+  const out = fmtDocket(raw);
+  if (out === raw) return;
+  const before = fmtDocket(raw.slice(0, pos)).length;
+  box.value = out;
+  box.setSelectionRange(before, before);
+});
 for (const id of ['prev', 'prev2']) $(id).addEventListener('click', () => { page--; render(); window.scrollTo(0, 0); });
 for (const id of ['next', 'next2']) $(id).addEventListener('click', () => { page++; render(); window.scrollTo(0, 0); });
 $('search').addEventListener('click', () => { applyFilters(); $('count').scrollIntoView({behavior: 'smooth', block: 'center'}); });
